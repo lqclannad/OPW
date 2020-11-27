@@ -82,7 +82,7 @@ public class Utility {
     /*
         将返回的JSON数据解析成Weather实体类
      */
-    public static OPWeather handleWeatherResponse(String response) {
+    public static HeWeather handleWeatherResponse(String response) {
         try {
             JSONObject jsonObject = new JSONObject(response);
             JSONArray jsonArray = jsonObject.getJSONArray("HeWeather");
