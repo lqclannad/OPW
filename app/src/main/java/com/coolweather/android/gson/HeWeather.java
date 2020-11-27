@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class OPWeather {
+public class HeWeather {
     public String status;
     public Basic basic;
     public AQI aqi;
