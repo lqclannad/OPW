@@ -85,11 +85,9 @@ public class Utility {
     public static OPWeather handleWeatherResponse(String response) {
         try {
             JSONObject jsonObject = new JSONObject(response);
-            JSONArray jsonArray = jsonObject.getJSONArray("OPWeather");
+            JSONArray jsonArray = jsonObject.getJSONArray("HeWeather");
             String weatherContent = jsonArray.getJSONObject(0).toString();
-            //fromJson()方法类型多种，注意！！！！！！！！！
-            return new Gson().fromJson(weatherContent,OPWeather.class);
-//            return new Gson().fromJson(weatherContent,OPWeather.class);
+            return new Gson().fromJson(weatherContent,HeWeather.class);
         } catch (JSONException e) {
             e.printStackTrace();
         }
