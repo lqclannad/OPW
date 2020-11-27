@@ -9,6 +9,8 @@ package com.coolweather.android.util;
         import com.coolweather.android.db.City;
         import com.coolweather.android.db.County;
         import com.coolweather.android.db.Province;
+        import com.coolweather.android.gson.OPWeather;
+        import com.google.gson.Gson;
 
 public class Utility {
     /*
@@ -76,4 +78,23 @@ public class Utility {
         }
         return false;
     }
+
+    /*
+        将返回的JSON数据解析成Weather实体类
+     */
+    public static OPWeather handleWeatherResponse(String response) {
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            JSONArray jsonArray = jsonObject.getJSONArray("OPWeather");
+            String weatherContent = jsonArray.getJSONObject(0).toString();
+            //fromJson()方法类型多种，注意！！！！！！！！！
+            return new Gson().fromJson(weatherContent,OPWeather.class);
+//            return new Gson().fromJson(weatherContent,OPWeather.class);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
 }
