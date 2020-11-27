@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.coolweather.android.gson.Forecast;
-import com.coolweather.android.gson.OPWeather;
+import com.coolweather.android.gson.HeWeather;
 import com.coolweather.android.util.HttpUtil;
 import com.coolweather.android.util.Utility;
 
@@ -72,7 +72,7 @@ public class WeatherActivity extends AppCompatActivity {
         String weatherString = prefs.getString("weather",null);
         if (weatherString != null) {
             //有缓存时直接解析天气数据
-            OPWeather weather = Utility.handleWeatherResponse(weatherString);
+            HeWeather weather = Utility.handleWeatherResponse(weatherString);
             showWeatherInfo(weather);
         } else {
             //无缓存时去服务器查询天气
@@ -108,7 +108,7 @@ public class WeatherActivity extends AppCompatActivity {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 final String responseText = response.body().string();
-                final OPWeather weather = Utility.handleWeatherResponse(responseText);
+                final HeWeather weather = Utility.handleWeatherResponse(responseText);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -130,7 +130,7 @@ public class WeatherActivity extends AppCompatActivity {
     /*
         处理并展示Weather实体类中的数据
      */
-    private void showWeatherInfo(OPWeather weather) {
+    private void showWeatherInfo(HeWeather weather) {
         String cityName = weather.basic.cityName;
         String updateTime = weather.basic.update.updateTime.split(" ")[1];
         String degree = weather.now.temperature + "°C";
